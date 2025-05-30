@@ -44,27 +44,26 @@ export default function Navbar() {
     <nav className="bg-white dark:bg-gray-900 shadow-md transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
-          <div className="flex items-center justify-center md:hidden">
+          <div className="flex items-center space-x-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 md:hidden"
               aria-label="Toggle menu"
             >
               {menuIcon}
             </button>
-          </div>
-
-          <div className="hidden md:flex space-x-8">
-            <Link href={RouteName.HOME} className={getLinkClasses(RouteName.HOME)}>
-              Home
-            </Link>
-            <Link href={RouteName.COUNTER} className={getLinkClasses(RouteName.COUNTER)}>
-              Counter
-            </Link>
-          </div>
-
-          <div className="flex-1 flex items-center justify-center">
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">Todo App</h1>
+          </div>
+
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <div className="flex space-x-8">
+              <Link href={RouteName.HOME} className={getLinkClasses(RouteName.HOME)}>
+                Home
+              </Link>
+              <Link href={RouteName.COUNTER} className={getLinkClasses(RouteName.COUNTER)}>
+                Counter
+              </Link>
+            </div>
           </div>
 
           <div className="flex items-center">

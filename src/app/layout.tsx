@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./index.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react"
