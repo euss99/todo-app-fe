@@ -1,4 +1,4 @@
-import { defaultMetadata } from './metadata'
+import { defaultMetadata } from '@/app/metadata'
 
 export const metadata = {
   ...defaultMetadata,
