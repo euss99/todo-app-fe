@@ -3,9 +3,9 @@
  */
 enum Theme {
   /** Light theme */
-  LIGHT = 'light',
+  LIGHT = "light",
   /** Dark theme */
-  DARK = 'dark'
+  DARK = "dark"
 }
 
 export default Theme;

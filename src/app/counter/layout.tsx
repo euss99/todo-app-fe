@@ -1,15 +1,18 @@
 import type { Metadata } from "next"
+import type { ReactNode } from "react"
+
 import { defaultMetadata } from "@/app/metadata"
+
 
 export const metadata: Metadata = {
   ...defaultMetadata,
-  title: 'Counter - Todo App',
+  title: "Counter - Todo App",
 }
 
 export default function CounterLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return children
 }

@@ -1,12 +1,13 @@
-'use client'
+"use client"
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useState, useMemo } from 'react'
-import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import MobileMenu from '@/components/MobileMenu'
-import RouteName from '@/utils/enums/RouteName.enum'
-import { useTheme } from '@/hooks/useTheme'
+import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useMemo,useState } from "react"
+
+import MobileMenu from "@/components/MobileMenu"
+import { useTheme } from "@/hooks/useTheme"
+import RouteName from "@/utils/enums/RouteName.enum"
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -30,9 +31,9 @@ export default function Navbar() {
   }, [isDark])
 
   const getLinkClasses = useMemo(() => {
-    const baseClasses = 'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200'
-    const activeClasses = 'border-blue-500 dark:border-white text-gray-900 dark:text-white'
-    const inactiveClasses = 'border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white'
+    const baseClasses = "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200"
+    const activeClasses = "border-blue-500 dark:border-white text-gray-900 dark:text-white"
+    const inactiveClasses = "border-transparent text-gray-500 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-white"
 
     return (path: string) => `${baseClasses} ${pathname === path ? activeClasses : inactiveClasses}`
   }, [pathname])

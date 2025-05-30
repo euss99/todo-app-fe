@@ -4,9 +4,9 @@
  */
 enum RouteName {
   /** Home page route */
-  HOME = '/',
+  HOME = "/",
   /** Counter page route */
-  COUNTER = '/counter'
+  COUNTER = "/counter"
 }
 
 export default RouteName;

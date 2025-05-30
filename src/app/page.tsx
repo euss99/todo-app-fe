@@ -1,8 +1,8 @@
-import { defaultMetadata } from '@/app/metadata'
+import { defaultMetadata } from "@/app/metadata"
 
 export const metadata = {
   ...defaultMetadata,
-  title: 'Home - Todo App',
+  title: "Home - Todo App",
 }
 
 export default function Home() {

@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useCounterStore } from '@/store/useCounterStore'
+import { useCounterStore } from "@/store/useCounterStore"
 
 export default function CounterPage() {
   const { count, increment, decrement, reset } = useCounterStore()
