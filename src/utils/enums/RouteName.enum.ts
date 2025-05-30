@@ -5,6 +5,10 @@
 enum RouteName {
   /** Home page route */
   HOME = "/",
+  /** Login page route */
+  LOGIN = "/login",
+  /** Register page route */
+  REGISTER = "/register",
   /** Counter page route */
   COUNTER = "/counter"
 }
