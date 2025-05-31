@@ -49,13 +49,13 @@ export default function Login() {
 
       <button
         type="submit"
-        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       >
         Iniciar sesión
       </button>
 
       <div className="flex items-center justify-end">
-        <a href={RouteName.REGISTER} className="font-medium text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400">
+        <a href={RouteName.REGISTER} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">
           Regístrate si aún no tienes una cuenta
         </a>
       </div>

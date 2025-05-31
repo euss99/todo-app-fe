@@ -1,6 +1,7 @@
 "use client"
 
 import { ArrowRightStartOnRectangleIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline"
+import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useMemo } from "react"
 
@@ -18,7 +19,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { mounted, toggleTheme, isDark } = useTheme()
 
   const getLinkClasses = (path: string) => {
-    const baseClasses = "flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200"
+    const baseClasses = "flex items-center px-4 py-2 text-base font-medium rounded-md transition-colors duration-200"
     const activeClasses = "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
     const inactiveClasses = "text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-white"
 
@@ -58,12 +59,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
 
           <nav className="flex-1 px-2 py-4 space-y-1">
-            <a href={RouteName.HOME} className={getLinkClasses(RouteName.HOME)}>
+            <Link href={RouteName.HOME} className={getLinkClasses(RouteName.HOME)}>
               Home
-            </a>
-            <a href={RouteName.COUNTER} className={getLinkClasses(RouteName.COUNTER)}>
-              Counter
-            </a>
+            </Link>
           </nav>
 
           <div className="p-4 space-y-2 border-t border-gray-200 dark:border-gray-700">

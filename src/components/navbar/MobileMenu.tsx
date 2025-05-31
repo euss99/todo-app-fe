@@ -30,9 +30,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <Link href={RouteName.HOME} className={getMobileClasses(RouteName.HOME)} onClick={onClose}>
           Home
         </Link>
-        <Link href={RouteName.COUNTER} className={getMobileClasses(RouteName.COUNTER)} onClick={onClose}>
-          Counter
-        </Link>
       </div>
     </div>
   )

@@ -9,8 +9,6 @@ enum RouteName {
   LOGIN = "/login",
   /** Register page route */
   REGISTER = "/register",
-  /** Counter page route */
-  COUNTER = "/counter"
 }
 
 export default RouteName;

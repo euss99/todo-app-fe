@@ -1,14 +1,17 @@
-import { defaultMetadata } from "@/app/metadata"
+import TodoHeader from "@/components/todo/TodoHeader"
+import TodoList from "@/components/todo/TodoList"
 
 export const metadata = {
-  ...defaultMetadata,
   title: "Home - Todo App",
 }
 
 export default function Home() {
   return (
     <div className="p-6">
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Home!</h1>
+      <div className="max-w-5xl mx-auto">
+        <TodoHeader />
+        <TodoList />
+      </div>
     </div>
   )
 }
