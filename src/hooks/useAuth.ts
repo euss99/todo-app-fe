@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
 import { AuthUseCases } from "@/contexts/auth/application/useCases/authUseCases";
-import { AuthRepositoryImpl } from "@/contexts/auth/infrastructure/repositories/AuthRepositoryImpl";
+import { ApiAuthRepository } from "@/contexts/auth/infrastructure/repositories/ApiAuthRepository";
 import { useAuthStore } from "@/store/authStore";
+import StorageKey from "@/utils/enums/StorageKey.enum";
 
-const authRepository = new AuthRepositoryImpl();
+const authRepository = new ApiAuthRepository();
 const authUseCases = new AuthUseCases(authRepository);
 
 export const useAuth = () => {
@@ -14,19 +15,14 @@ export const useAuth = () => {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const storedToken = localStorage.getItem("auth_token");
-        console.log("Stored token:", storedToken);
-
+        const storedToken = localStorage.getItem(StorageKey.AUTH_TOKEN);
         if (storedToken) {
           const currentUser = await authUseCases.getCurrentUser();
-          console.log("Current user from API:", currentUser);
-
+          console.log({currentUser});
           if (currentUser) {
             setToken(storedToken);
             setUser(currentUser);
-            console.log("Auth state updated:", { token: storedToken, user: currentUser });
           } else {
-            console.log("No current user found, clearing auth");
             clearAuth();
           }
         }
@@ -44,12 +40,8 @@ export const useAuth = () => {
   const login = async (email: string, password: string) => {
     try {
       const response = await authUseCases.login(email, password);
-      console.log("Login response:", response);
-
       setToken(response.token);
       setUser(response.user);
-      console.log("Auth state after login:", { token: response.token, user: response.user });
-
       return response;
     } catch (error) {
       console.error("Login error:", error);
@@ -61,7 +53,6 @@ export const useAuth = () => {
     try {
       await authUseCases.logout();
       clearAuth();
-      console.log("Auth state cleared after logout");
     } catch (error) {
       console.error("Logout error:", error);
       throw error;

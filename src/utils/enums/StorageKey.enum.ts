@@ -3,7 +3,8 @@
  */
 enum StorageKey {
   /** Key for storing the application theme preference */
-  THEME = "theme"
+  THEME = "theme",
+  AUTH_TOKEN = "auth_token"
 }
 
 export default StorageKey;

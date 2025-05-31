@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useMemo } from "react";
 
+import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/hooks/useTheme";
-import { useAuthStore } from "@/store/authStore";
 import RouteName from "@/utils/enums/RouteName.enum";
 
 interface SidebarProps {
@@ -18,7 +18,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const { mounted, toggleTheme, isDark } = useTheme();
-  const { user } = useAuthStore();
+  const { user, logout } = useAuth();
 
   const getLinkClasses = (path: string) => {
     const baseClasses = "flex items-center px-4 py-2 text-base font-medium rounded-md transition-colors duration-200";
@@ -38,6 +38,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   }, [isDark]);
 
   const handleLogout = async () => {
+    await logout();
     router.push(RouteName.LOGIN);
   };
 
@@ -68,7 +69,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
           <div className="p-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <p className="text-base font-medium text-gray-900 dark:text-white">
-              Hola, {user?.name || "Usuario"}
+              Hola, {user?.name || "Usuario"}!
             </p>
             <button
               onClick={toggleTheme}

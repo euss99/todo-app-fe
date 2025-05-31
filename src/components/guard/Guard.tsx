@@ -3,8 +3,9 @@
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useEffect, useState } from "react";
 
-import { useAuthStore } from "@/store/authStore";
+import { useAuth } from "@/hooks/useAuth";
 import RouteName from "@/utils/enums/RouteName.enum";
+import StorageKey from "@/utils/enums/StorageKey.enum";
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -16,11 +17,11 @@ const PROTECTED_ROUTES = [RouteName.HOME];
 export default function Guard({ children }: AuthGuardProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const { token } = useAuthStore();
+  const { token } = useAuth();
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("auth_token");
+    const storedToken = localStorage.getItem(StorageKey.AUTH_TOKEN);
 
     const isPublicRoute = PUBLIC_ROUTES.includes(pathname as RouteName);
     const isProtectedRoute = PROTECTED_ROUTES.includes(pathname as RouteName);
@@ -34,9 +35,7 @@ export default function Guard({ children }: AuthGuardProps) {
     }
   }, [pathname, token, router]);
 
-  if (checkingAuth) {
-    return null;
-  }
+  if (checkingAuth) return null;
 
   return <>{children}</>;
 }
