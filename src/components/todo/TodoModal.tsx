@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { XMarkIcon } from "@heroicons/react/24/outline"
-import { useEffect, useRef, useState } from "react"
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useEffect, useRef, useState } from "react";
 
-import TodoInput from "@/components/todo/TodoInput"
+import TodoInput from "@/components/todo/TodoInput";
 
 interface TodoModalProps {
   isOpen: boolean
@@ -22,35 +22,35 @@ export default function TodoModal({
   initialDescription = "",
   mode = "add"
 }: TodoModalProps) {
-  const [title, setTitle] = useState(initialTitle)
-  const [description, setDescription] = useState(initialDescription)
-  const modalRef = useRef<HTMLDivElement>(null)
+  const [title, setTitle] = useState(initialTitle);
+  const [description, setDescription] = useState(initialDescription);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClose()
+        onClose();
       }
-    }
+    };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [isOpen, onClose])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit(title, description)
-    setTitle("")
-    setDescription("")
-    onClose()
-  }
+    e.preventDefault();
+    onSubmit(title, description);
+    setTitle("");
+    setDescription("");
+    onClose();
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-gray-600/30 backdrop-blur-sm transition-opacity z-50">
@@ -111,5 +111,5 @@ export default function TodoModal({
         </div>
       </div>
     </div>
-  )
+  );
 }

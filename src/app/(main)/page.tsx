@@ -1,9 +1,9 @@
-import TodoHeader from "@/components/todo/TodoHeader"
-import TodoList from "@/components/todo/TodoList"
+import TodoHeader from "@/components/todo/TodoHeader";
+import TodoList from "@/components/todo/TodoList";
 
 export const metadata = {
   title: "Home - Todo App",
-}
+};
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
         <TodoList />
       </div>
     </div>
-  )
+  );
 }

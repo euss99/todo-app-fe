@@ -1,11 +1,11 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
-import LoginForm from "@/components/auth/LoginForm"
+import LoginForm from "@/components/auth/LoginForm";
 
 export const metadata: Metadata = {
   title: "Login - Todo App",
   description: "Inicia sesión en tu cuenta de Todo App",
-}
+};
 
 export default function LoginPage() {
   return (
@@ -15,5 +15,5 @@ export default function LoginPage() {
       </h2>
       <LoginForm />
     </div>
-  )
+  );
 }

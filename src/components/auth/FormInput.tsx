@@ -1,4 +1,4 @@
-import { type InputHTMLAttributes } from "react"
+import { type InputHTMLAttributes } from "react";
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
@@ -16,11 +16,11 @@ export default function FormInput({
   ...props
 }: FormInputProps) {
   const getRoundedClasses = () => {
-    if (isFirst && isLast) return "rounded-md"
-    if (isFirst) return "rounded-t-md"
-    if (isLast) return "rounded-b-md"
-    return ""
-  }
+    if (isFirst && isLast) return "rounded-md";
+    if (isFirst) return "rounded-t-md";
+    if (isLast) return "rounded-b-md";
+    return "";
+  };
 
   return (
     <div>
@@ -33,5 +33,5 @@ export default function FormInput({
       />
       {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
     </div>
-  )
+  );
 }

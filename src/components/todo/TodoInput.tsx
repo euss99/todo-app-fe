@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 interface TodoInputProps {
   id: string
@@ -42,5 +42,5 @@ export default function TodoInput({
         />
       )}
     </div>
-  )
+  );
 }

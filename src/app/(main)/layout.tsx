@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import type { ReactNode } from "react"
-import { useState } from "react"
+import type { ReactNode } from "react";
+import { useState } from "react";
 
-import MobileHeader from "@/components/navbar/MobileHeader"
-import Sidebar from "@/components/navbar/Sidebar"
+import MobileHeader from "@/components/navbar/MobileHeader";
+import Sidebar from "@/components/navbar/Sidebar";
 
 export default function MainLayout({
   children,
 }: {
   children: ReactNode
 }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="h-screen flex bg-gray-50 dark:bg-gray-900">
@@ -23,5 +23,5 @@ export default function MainLayout({
         </main>
       </div>
     </div>
-  )
+  );
 }

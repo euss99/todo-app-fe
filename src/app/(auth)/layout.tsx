@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
-import AuthHeader from "@/components/navbar/AuthHeader"
+import AuthHeader from "@/components/navbar/AuthHeader";
 
 export default function AuthLayout({
   children,
@@ -18,5 +18,5 @@ export default function AuthLayout({
         </div>
       </main>
     </div>
-  )
+  );
 }

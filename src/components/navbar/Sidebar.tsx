@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import { ArrowRightStartOnRectangleIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { useMemo } from "react"
+import { ArrowRightStartOnRectangleIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useMemo } from "react";
 
-import { useTheme } from "@/hooks/useTheme"
-import RouteName from "@/utils/enums/RouteName.enum"
+import { useTheme } from "@/hooks/useTheme";
+import { useAuthStore } from "@/store/authStore";
+import RouteName from "@/utils/enums/RouteName.enum";
 
 interface SidebarProps {
   isOpen: boolean
@@ -14,32 +15,33 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const pathname = usePathname()
-  const router = useRouter()
-  const { mounted, toggleTheme, isDark } = useTheme()
+  const pathname = usePathname();
+  const router = useRouter();
+  const { mounted, toggleTheme, isDark } = useTheme();
+  const { user } = useAuthStore();
 
   const getLinkClasses = (path: string) => {
-    const baseClasses = "flex items-center px-4 py-2 text-base font-medium rounded-md transition-colors duration-200"
-    const activeClasses = "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
-    const inactiveClasses = "text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-white"
+    const baseClasses = "flex items-center px-4 py-2 text-base font-medium rounded-md transition-colors duration-200";
+    const activeClasses = "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white";
+    const inactiveClasses = "text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-white";
 
-    return `${baseClasses} ${pathname === path ? activeClasses : inactiveClasses}`
-  }
+    return `${baseClasses} ${pathname === path ? activeClasses : inactiveClasses}`;
+  };
 
-  const transformClasses = useMemo(() => isOpen ? "translate-x-0" : "-translate-x-full", [isOpen])
+  const transformClasses = useMemo(() => isOpen ? "translate-x-0" : "-translate-x-full", [isOpen]);
   const themeIcon = useMemo(() => {
     return isDark() ? (
       <SunIcon className="w-6 h-6 text-yellow-500" />
     ) : (
       <MoonIcon className="w-6 h-6 text-gray-800 dark:text-gray-300" />
-    )
-  }, [isDark])
+    );
+  }, [isDark]);
 
   const handleLogout = async () => {
-    router.push(RouteName.LOGIN)
-  }
+    router.push(RouteName.LOGIN);
+  };
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
     <>
@@ -65,6 +67,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </nav>
 
           <div className="p-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-base font-medium text-gray-900 dark:text-white">
+              Hola, {user?.name || "Usuario"}
+            </p>
             <button
               onClick={toggleTheme}
               className="w-full flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -83,5 +88,5 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
       </div>
     </>
-  )
+  );
 }

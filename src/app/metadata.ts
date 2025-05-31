@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
 export const defaultMetadata: Metadata = {
   title: "Todo App - Technical Test",
@@ -6,4 +6,4 @@ export const defaultMetadata: Metadata = {
   keywords: ["todo", "nextjs", "zustand", "typescript", "technical test", "react", "frontend"],
   authors: [{ name: "Efrain Uriel Solis Salinas" }],
   creator: "Efrain Uriel Solis Salinas",
-}
+};

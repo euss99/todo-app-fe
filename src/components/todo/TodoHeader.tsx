@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { PlusIcon } from "@heroicons/react/24/outline"
-import { useState } from "react"
+import { PlusIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
-import TodoModal from "@/components/todo/TodoModal"
+import TodoModal from "@/components/todo/TodoModal";
 
 export default function TodoHeader() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddTodo = (title: string, description: string) => {
     // TODO: Implementar la lógica para agregar la tarea
-    console.log({ title, description })
-  }
+    console.log({ title, description });
+  };
 
   return (
     <>
@@ -33,5 +33,5 @@ export default function TodoHeader() {
         mode="add"
       />
     </>
-  )
+  );
 }

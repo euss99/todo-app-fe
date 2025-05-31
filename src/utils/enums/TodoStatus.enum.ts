@@ -4,4 +4,4 @@ enum TodoStatus {
   COMPLETED = "COMPLETED"
 }
 
-export default TodoStatus
+export default TodoStatus;

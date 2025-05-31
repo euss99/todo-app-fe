@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline"
-import { useMemo } from "react"
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import { useMemo } from "react";
 
-import { useTheme } from "@/hooks/useTheme"
+import { useTheme } from "@/hooks/useTheme";
 
 export default function AuthHeader() {
-  const { mounted, toggleTheme, isDark } = useTheme()
+  const { mounted, toggleTheme, isDark } = useTheme();
 
   const themeIcon = useMemo(() => {
     return isDark() ? (
       <SunIcon className="w-6 h-6 text-yellow-500" />
     ) : (
       <MoonIcon className="w-6 h-6 text-gray-800 dark:text-gray-300" />
-    )
-  }, [isDark])
+    );
+  }, [isDark]);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   return (
     <nav className="flex items-center justify-between container h-16 px-4 mx-auto dark:border-gray-700">
@@ -29,5 +29,5 @@ export default function AuthHeader() {
         {themeIcon}
       </button>
     </nav>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
-import RegisterForm from "@/components/auth/RegisterForm"
+import RegisterForm from "@/components/auth/RegisterForm";
 
 export const metadata: Metadata = {
   title: "Registro - Todo App",
   description: "Crea una nueva cuenta en Todo App",
-}
+};
 
 export default function RegisterPage() {
   return (
@@ -15,5 +15,5 @@ export default function RegisterPage() {
       </h2>
       <RegisterForm />
     </div>
-  )
+  );
 }

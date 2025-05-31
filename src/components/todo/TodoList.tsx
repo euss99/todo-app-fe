@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import TodoCard from "@/components/todo/TodoCard"
-import TodoStatus from "@/utils/enums/TodoStatus.enum"
+import TodoCard from "@/components/todo/TodoCard";
+import TodoStatus from "@/utils/enums/TodoStatus.enum";
 
 export default function TodoList() {
   const handleEdit = (id: string) => {
     // TODO: Implementar la lógica de edición
-    console.log("Editando tarea:", id)
-  }
+    console.log("Editando tarea:", id);
+  };
 
   return (
     <div className="space-y-4">
@@ -33,5 +33,5 @@ export default function TodoList() {
         onEdit={() => handleEdit("3")}
       />
     </div>
-  )
+  );
 }

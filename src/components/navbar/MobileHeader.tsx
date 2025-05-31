@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Bars3Icon } from "@heroicons/react/24/outline"
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 interface MobileHeaderProps {
   onOpen: () => void
@@ -20,5 +20,5 @@ export default function MobileHeader({ onOpen }: MobileHeaderProps) {
         </button>
       </div>
     </div>
-  )
+  );
 }

@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-import FormInput from "@/components/auth/FormInput"
-import RouteName from "@/utils/enums/RouteName.enum"
+import FormInput from "@/components/auth/FormInput";
+import RouteName from "@/utils/enums/RouteName.enum";
 
 export default function RegisterForm() {
-  const router = useRouter()
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState("")
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
     if (password !== confirmPassword) {
-      setError("Las contraseñas no coinciden")
-      return
+      setError("Las contraseñas no coinciden");
+      return;
     }
 
     // TODO: Implementar la lógica de registro
-    console.log({ name, email, password })
-    router.push(RouteName.HOME)
-  }
+    console.log({ name, email, password });
+    router.push(RouteName.HOME);
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -93,5 +93,5 @@ export default function RegisterForm() {
         </a>
       </div>
     </form>
-  )
+  );
 }

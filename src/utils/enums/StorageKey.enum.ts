@@ -6,4 +6,4 @@ enum StorageKey {
   THEME = "theme"
 }
 
-export default StorageKey
+export default StorageKey;

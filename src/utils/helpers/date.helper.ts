@@ -3,8 +3,8 @@ export const formatDate = (date: Date): string => {
     year: "numeric",
     month: "long",
     day: "numeric"
-  }
+  };
 
-  const formatter = new Intl.DateTimeFormat("es-ES", options)
-  return formatter.format(date)
-}
+  const formatter = new Intl.DateTimeFormat("es-ES", options);
+  return formatter.format(date);
+};

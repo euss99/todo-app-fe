@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { PencilSquareIcon } from "@heroicons/react/24/outline"
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 
-import TodoStatus from "@/utils/enums/TodoStatus.enum"
-import { formatDate } from "@/utils/helpers/date.helper"
+import TodoStatus from "@/utils/enums/TodoStatus.enum";
+import { formatDate } from "@/utils/helpers/date.helper";
 
 interface TodoCardProps {
   title: string
@@ -17,13 +17,13 @@ const STATUS_COLORS: Record<TodoStatus, string> = {
   [TodoStatus.PENDING]: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
   [TodoStatus.IN_PROGRESS]: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
   [TodoStatus.COMPLETED]: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-}
+};
 
 const STATUS_TEXT: Record<TodoStatus, string> = {
   [TodoStatus.PENDING]: "Pendiente",
   [TodoStatus.IN_PROGRESS]: "En progreso",
   [TodoStatus.COMPLETED]: "Completado"
-}
+};
 
 export default function TodoCard({ title, description, date, status, onEdit }: TodoCardProps) {
   return (
@@ -52,5 +52,5 @@ export default function TodoCard({ title, description, date, status, onEdit }: T
         </div>
       </div>
     </div>
-  )
+  );
 }
