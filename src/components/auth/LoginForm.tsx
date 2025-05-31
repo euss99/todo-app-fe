@@ -77,7 +77,7 @@ export default function LoginForm() {
         {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
       </button>
 
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-center">
         <a href={RouteName.REGISTER} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">
           Regístrate si aún no tienes una cuenta
         </a>

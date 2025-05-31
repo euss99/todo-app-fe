@@ -48,13 +48,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity lg:hidden z-20"
+          className="fixed inset-0 bg-gray-600/30 backdrop-blur-sm transition-opacity lg:hidden z-20"
           onClick={onClose}
         />
       )}
 
       <div
-        className={`fixed inset-y-0 left-0 z-30 w-64 bg-white dark:bg-gray-900 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${transformClasses}`}
+        className={`fixed inset-y-0 left-0 z-30 w-64 md:w-1/2 lg:w-64 bg-white dark:bg-gray-900 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${transformClasses}`}
       >
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-center h-16 px-4 border-b border-gray-200 dark:border-gray-700">

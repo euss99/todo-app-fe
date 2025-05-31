@@ -4,32 +4,44 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import FormInput from "@/components/auth/FormInput";
+import { useUser } from "@/hooks/useUser";
 import RouteName from "@/utils/enums/RouteName.enum";
 
 export default function RegisterForm() {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { createUser, isLoading, error } = useUser();
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
 
     if (password !== confirmPassword) {
-      setError("Las contraseñas no coinciden");
+      console.error("Las contraseñas no coinciden");
       return;
     }
 
-    // TODO: Implementar la lógica de registro
-    console.log({ name, email, password });
-    router.push(RouteName.HOME);
+    try {
+      await createUser({ name, email, password });
+      router.push(RouteName.LOGIN);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      {error && (
+        <div className="rounded-md bg-red-50 p-4">
+          <div className="flex">
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-red-800">{error}</h3>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="rounded-md shadow-sm -space-y-px">
         <FormInput
           autoComplete="name"
@@ -67,7 +79,7 @@ export default function RegisterForm() {
         />
         <FormInput
           autoComplete="new-password"
-          error={error}
+          error={password !== confirmPassword ? "Las contraseñas no coinciden" : undefined}
           id="confirm-password"
           isLast
           label="Confirmar contraseña"
@@ -82,12 +94,13 @@ export default function RegisterForm() {
 
       <button
         type="submit"
-        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        disabled={isLoading}
+        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Registrarse
+        {isLoading ? "Registrando..." : "Registrarse"}
       </button>
 
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-center">
         <a href={RouteName.LOGIN} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">
           ¿Ya tienes una cuenta? Inicia sesión
         </a>
