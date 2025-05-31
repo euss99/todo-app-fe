@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import Register from "@/components/forms/Register"
+import RegisterForm from "@/components/auth/RegisterForm"
 
 export const metadata: Metadata = {
   title: "Registro - Todo App",
@@ -13,7 +13,7 @@ export default function RegisterPage() {
       <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
         Crear una cuenta
       </h2>
-      <Register />
+      <RegisterForm />
     </div>
   )
 }

@@ -7,7 +7,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   isLast?: boolean
 }
 
-export default function Input({
+export default function FormInput({
   label,
   error,
   isFirst = false,
