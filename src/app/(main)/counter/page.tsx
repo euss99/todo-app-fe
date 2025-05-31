@@ -6,10 +6,10 @@ export default function CounterPage() {
   const { count, increment, decrement, reset } = useCounterStore()
 
   return (
-    <div className="min-h-full flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-center">Counter Example</h1>
-        <div className="text-4xl font-bold text-center mb-6">{count}</div>
+    <div className="p-6">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">Counter Example</h1>
+        <div className="text-4xl font-bold text-center mb-6 text-gray-900 dark:text-white">{count}</div>
         <div className="flex gap-4 justify-center">
           <button
             onClick={decrement}

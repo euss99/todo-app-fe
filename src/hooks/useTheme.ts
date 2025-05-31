@@ -12,6 +12,12 @@ export const useTheme = () => {
     if (savedTheme) {
       setTheme(savedTheme)
       document.documentElement.setAttribute("data-theme", savedTheme)
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      const initialTheme = prefersDark ? Theme.DARK : Theme.LIGHT
+      setTheme(initialTheme)
+      document.documentElement.setAttribute("data-theme", initialTheme)
+      localStorage.setItem(StorageKey.THEME, initialTheme)
     }
     setMounted(true)
   }, [])

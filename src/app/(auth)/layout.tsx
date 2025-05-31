@@ -1,6 +1,8 @@
+"use client"
+
 import type { ReactNode } from "react"
 
-import Navbar from "@/components/Navbar"
+import AuthHeader from "@/components/navbar/AuthHeader"
 
 export default function AuthLayout({
   children,
@@ -9,9 +11,9 @@ export default function AuthLayout({
 }) {
   return (
     <div className="h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-      <Navbar />
+      <AuthHeader />
       <main className="flex-1">
-        <div className="min-h-full flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           {children}
         </div>
       </main>
