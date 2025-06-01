@@ -1,22 +1,13 @@
 import { ApolloError } from "@apollo/client";
 import { AxiosError } from "axios";
 import { useCallback } from "react";
-import { toast, type ToastPosition } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface GraphQLErrorExtensions {
   originalError?: {
     message: string[];
   };
 }
-
-const TOAST_CONFIG = {
-  autoClose: 2000, // 2 segundos
-  position: "top-right" as ToastPosition,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true
-};
 
 const getErrorMessage = (error: unknown): string => {
   if (error instanceof AxiosError) {
@@ -41,11 +32,11 @@ const getErrorMessage = (error: unknown): string => {
 export function useToast() {
   const showErrorToast = useCallback((error: unknown) => {
     const message = getErrorMessage(error);
-    toast.error(message, TOAST_CONFIG);
+    toast.error(message);
   }, []);
 
   const showSuccessToast = useCallback((message: string) => {
-    toast.success(message, TOAST_CONFIG);
+    toast.success(message);
   }, []);
 
   return {
