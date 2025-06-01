@@ -3,15 +3,32 @@
 ## 📝 Descripción
 Todo App es una aplicación web moderna para la gestión de tareas personales. La aplicación cuenta con un sistema de autenticación completo, gestión de tareas, y soporte para temas claro y oscuro, ofreciendo una experiencia de usuario intuitiva y personalizable.
 
+## 🌐 Demo en Producción
+
+Puedes ver la aplicación desplegada en el siguiente enlace:
+🔗 [https://todo-app-uriel-solis.netlify.app](https://todo-app-uriel-solis.netlify.app)
+
+El proyecto fue subido utilizando **Netlify**, elegido por su practicidad y rapidez en el despliegue de aplicaciones frontend.
+
 ## 🏗 Arquitectura
-La aplicación sigue los principios de la Arquitectura Hexagonal, lo que permite:
-- Separación clara de responsabilidades
-- Independencia de frameworks
-- Facilidad para realizar pruebas
-- Adaptabilidad a diferentes tecnologías
-- Mantenibilidad del código
-- Flexibilidad para migrar a otros frameworks o plataformas
-- Capacidad de intercambiar implementaciones sin afectar la lógica de negocio
+
+La aplicación está diseñada siguiendo los principios de la **Arquitectura Hexagonal**, una estrategia que permite desacoplar la lógica de negocio de los detalles de infraestructura como frameworks, librerías o bases de datos. Esta arquitectura facilita el mantenimiento, escalabilidad y evolución del proyecto a largo plazo.
+
+### Ventajas Clave
+
+- **Separación de responsabilidades**: La lógica del dominio está aislada del framework (Next.js), librerías de red (Axios, Apollo), e incluso de los estados (Zustand), lo cual permite modificar o sustituir estos elementos sin afectar el núcleo de la aplicación.
+- **Facilidad para cambiar de framework**: Si en el futuro se decide migrar de Next.js a otro framework como Astro, Remix, o incluso una app móvil con React Native, gran parte de la lógica del dominio puede mantenerse intacta.
+- **Mayor testabilidad**: Al separar la lógica de negocio del resto de capas, se pueden escribir pruebas unitarias más simples y enfocadas.
+- **Flexibilidad tecnológica**: Es posible intercambiar tecnologías como el cliente GraphQL o el gestor de estado sin reescribir la lógica central.
+- **Escalabilidad**: La organización por capas y límites claros facilita la incorporación de nuevas funcionalidades sin introducir dependencias innecesarias.
+
+### Organización
+
+- **Dominio**: Se ubica en el contexto de cada módulo (`contexts/`) e implementa la lógica central de autenticación, gestión de usuarios y tareas.
+- **Adaptadores**: Axios (REST) y Apollo Client (GraphQL) actúan como adaptadores que conectan el dominio con las fuentes externas.
+- **Entradas/Salidas**: Los hooks y componentes funcionan como puntos de entrada/salida, orquestando los datos desde/hacia la lógica del dominio.
+
+Esta estructura potencia la mantenibilidad y prepara la aplicación para escalar, integrarse con nuevas tecnologías, o adaptarse a futuros cambios con un esfuerzo mínimo.
 
 ### App Router
 La aplicación utiliza el nuevo App Router de Next.js, que proporciona:
@@ -25,6 +42,7 @@ La aplicación utiliza el nuevo App Router de Next.js, que proporciona:
 ## ✨ Características Principales
 - 🔐 Sistema de autenticación (login y registro de usuarios)
 - ✅ Gestión completa de tareas (crear, leer, actualizar, eliminar)
+- 📄 Paginación en el frontend (visible si hay más de 3 tareas)
 - 🌓 Soporte para tema claro y oscuro
 - 📱 Diseño responsive
 - 🔄 Estado global con Zustand
