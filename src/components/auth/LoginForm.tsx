@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 
 import FormInput from "@/components/auth/FormInput";
 import Button from "@/components/ui/Button";
@@ -14,7 +14,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const auth = await login(email, password);

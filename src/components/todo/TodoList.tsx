@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import TodoCard from "@/components/todo/TodoCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { Todo } from "@/contexts/todo/domain/entities/Todo";
 import { useAuth } from "@/hooks/useAuth";
 import { useTodo } from "@/hooks/useTodo";
+import { useModalStore } from "@/store/modalStore";
 
 export default function TodoList() {
   const { user } = useAuth();
-  const { todos, getTodos, isLoading, shouldRefetch } = useTodo();
+  const { todos, getTodos, isLoading, shouldRefetch, selectTodo, deleteTodo } = useTodo();
+  const { openModal } = useModalStore();
+
+  const sortedTodos = useMemo(() => {
+    return [...todos].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }, [todos]);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -25,6 +32,18 @@ export default function TodoList() {
     fetchTodos();
   }, [user?.id, getTodos, shouldRefetch]);
 
+  const handleEdit = (todo: Todo) => {
+    selectTodo(todo);
+    openModal();
+  };
+
+  const handleDelete = async (id: string) => {
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar esta tarea?");
+    if (!isConfirmed) return;
+
+    await deleteTodo(id);
+  };
+
   if (isLoading) {
     return <LoadingScreen />;
   }
@@ -39,14 +58,15 @@ export default function TodoList() {
 
   return (
     <div className="space-y-4">
-      {todos.map((todo) => (
+      {sortedTodos.map((todo) => (
         <TodoCard
           key={todo.id}
           title={todo.title}
           description={todo.description}
           date={new Date(todo.createdAt)}
           status={todo.status}
-          onEdit={() => {}}
+          onEdit={() => handleEdit(todo)}
+          onDelete={() => handleDelete(todo.id)}
         />
       ))}
     </div>

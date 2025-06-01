@@ -22,7 +22,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const getLinkClasses = (path: string) => {
     const baseClasses = "flex items-center px-4 py-2 text-base font-medium rounded-md transition-colors duration-200";
-    const activeClasses = "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white";
+    const activeClasses = "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white";
     const inactiveClasses = "text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-white";
 
     return `${baseClasses} ${pathname === path ? activeClasses : inactiveClasses}`;
@@ -54,7 +54,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       )}
 
       <div
-        className={`fixed inset-y-0 left-0 z-30 w-64 md:w-1/2 lg:w-64 bg-white dark:bg-gray-900 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${transformClasses}`}
+        className={`fixed inset-y-0 left-0 z-30 w-64 md:w-1/2 lg:w-64 bg-white dark:bg-gray-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${transformClasses}`}
       >
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-center h-16 px-4 border-b border-gray-200 dark:border-gray-700">
@@ -73,7 +73,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </p>
             <button
               onClick={toggleTheme}
-              className="w-full flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+              className="w-full flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
               aria-label="Toggle dark mode"
             >
               {themeIcon}

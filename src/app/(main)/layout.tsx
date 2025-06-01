@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import MobileHeader from "@/components/navbar/MobileHeader";
 import Sidebar from "@/components/navbar/Sidebar";
+import TodoModal from "@/components/todo/TodoModal";
+import { useModalStore } from "@/store/modalStore";
 
 export default function MainLayout({
   children,
@@ -12,6 +14,7 @@ export default function MainLayout({
   children: ReactNode
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { isModalOpen, closeModal } = useModalStore();
 
   return (
     <div className="h-screen flex bg-gray-50 dark:bg-gray-900">
@@ -22,6 +25,7 @@ export default function MainLayout({
           {children}
         </main>
       </div>
+      <TodoModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }

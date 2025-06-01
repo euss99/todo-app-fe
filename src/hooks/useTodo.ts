@@ -19,7 +19,7 @@ const deleteTodoUseCase = new DeleteTodoUseCase(todoRepository);
 
 export function useTodo() {
   const [isLoading, setIsLoading] = useState(false);
-  const { showErrorToast } = useToast();
+  const { showErrorToast, showSuccessToast } = useToast();
   const {
     todos,
     selectedTodo,
@@ -56,6 +56,7 @@ export function useTodo() {
       setIsLoading(true);
       const newTodo = await createTodoUseCase.execute(input);
       addTodo(newTodo);
+      showSuccessToast("Tarea creada exitosamente");
       return newTodo;
     } catch (error) {
       showErrorToast("Error al crear la tarea");
@@ -71,6 +72,7 @@ export function useTodo() {
       setIsLoading(true);
       const updatedTodo = await updateTodoUseCase.execute(input);
       updateTodoInStore(updatedTodo);
+      showSuccessToast("Tarea actualizada exitosamente");
       return updatedTodo;
     } catch (error) {
       showErrorToast("Error al actualizar la tarea");
@@ -86,6 +88,7 @@ export function useTodo() {
       setIsLoading(true);
       const updatedTodo = await updateTodoStatusUseCase.execute(input);
       updateTodoInStore(updatedTodo);
+      showSuccessToast("Estado de la tarea actualizado exitosamente");
       return updatedTodo;
     } catch (error) {
       showErrorToast("Error al actualizar el estado de la tarea");
@@ -101,6 +104,7 @@ export function useTodo() {
       setIsLoading(true);
       await deleteTodoUseCase.execute(id);
       removeTodo(id);
+      showSuccessToast("Tarea eliminada exitosamente");
     } catch (error) {
       showErrorToast("Error al eliminar la tarea");
       console.error("Error deleting todo:", error);
