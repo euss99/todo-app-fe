@@ -7,6 +7,7 @@ import { CREATE_USER_MUTATION } from "@/contexts/user/infrastructure/graphql/mut
 
 export class GraphQLUserRepository implements UserRepository {
   private readonly API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   private readonly client = new ApolloClient({
     uri: `${this.API_URL}/graphql`,
     cache: new InMemoryCache()

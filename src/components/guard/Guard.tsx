@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { type ReactNode, useEffect, useState } from "react";
 
+import LoadingScreen from "@/components/ui/LoadingScreen";
 import { useAuth } from "@/hooks/useAuth";
 import RouteName from "@/utils/enums/RouteName.enum";
 import StorageKey from "@/utils/enums/StorageKey.enum";
@@ -35,7 +36,7 @@ export default function Guard({ children }: AuthGuardProps) {
     }
   }, [pathname, token, router]);
 
-  if (checkingAuth) return null;
+  if (checkingAuth) return <LoadingScreen />;
 
   return <>{children}</>;
 }
