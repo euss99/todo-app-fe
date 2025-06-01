@@ -30,10 +30,10 @@ export default function LoginForm() {
           autoComplete="email"
           id="email-address"
           isFirst
-          label="Correo electrónico"
+          label="Email"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Correo electrónico"
+          placeholder="Email"
           required
           type="email"
           value={email}
@@ -42,10 +42,10 @@ export default function LoginForm() {
           autoComplete="current-password"
           id="password"
           isLast
-          label="Contraseña"
+          label="Password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
+          placeholder="Password"
           required
           type="password"
           value={password}
@@ -53,7 +53,7 @@ export default function LoginForm() {
       </div>
 
       <Button
-        label="Iniciar sesión"
+        label="Sign In"
         isLoading={isLoading}
         type="submit"
         fullWidth
@@ -61,7 +61,7 @@ export default function LoginForm() {
 
       <div className="flex items-center justify-center">
         <a href={RouteName.REGISTER} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">
-          ¿No tienes una cuenta? Regístrate
+          Don&apos;t have an account? Sign up
         </a>
       </div>
     </form>

@@ -35,20 +35,20 @@ export default function TodoCard({ title, description, date, status, onEdit, onD
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 break-words">{description}</p>
           <div className="mt-3 flex items-center justify-between">
             <div className="text-sm sm:text-base text-gray-500 dark:text-gray-400">
-              Creado el {formatDate(date)}
+              Created on {formatDate(date)}
             </div>
             <div className="flex">
               <button
                 onClick={onEdit}
                 className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                aria-label="Editar tarea"
+                aria-label="Edit task"
               >
                 <PencilSquareIcon className="w-5 h-5" />
               </button>
               <button
                 onClick={onDelete}
                 className="p-2 text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors duration-200"
-                aria-label="Eliminar tarea"
+                aria-label="Delete task"
               >
                 <TrashIcon className="w-5 h-5" />
               </button>

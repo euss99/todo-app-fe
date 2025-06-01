@@ -84,7 +84,7 @@ export default function TodoModal({ isOpen, onClose }: TodoModalProps) {
       >
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            {selectedTodo ? "Editar tarea" : "Nueva tarea"}
+            {selectedTodo ? "Edit Task" : "New Task"}
           </h2>
           <button
             onClick={onClose}
@@ -97,7 +97,7 @@ export default function TodoModal({ isOpen, onClose }: TodoModalProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <TodoInput
             id="title"
-            label="Título"
+            label="Title"
             value={title}
             onChange={setTitle}
             type="text"
@@ -105,7 +105,7 @@ export default function TodoModal({ isOpen, onClose }: TodoModalProps) {
           />
           <TodoInput
             id="description"
-            label="Descripción"
+            label="Description"
             value={description}
             onChange={setDescription}
             type="textarea"
@@ -114,7 +114,7 @@ export default function TodoModal({ isOpen, onClose }: TodoModalProps) {
           {selectedTodo && (
             <TodoSelect
               id="status"
-              label="Estado"
+              label="Status"
               value={status}
               onChange={setStatus}
             />
@@ -125,11 +125,11 @@ export default function TodoModal({ isOpen, onClose }: TodoModalProps) {
               type="button"
               onClick={onClose}
               variant="secondary"
-              label="Cancelar"
+              label="Cancel"
             />
             <Button
               type="submit"
-              label={selectedTodo ? "Actualizar" : "Crear"}
+              label={selectedTodo ? "Update" : "Create"}
             />
           </div>
         </form>

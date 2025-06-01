@@ -1,9 +1,9 @@
 import TodoStatus from "@/utils/enums/TodoStatus.enum";
 
 const StatusText: Record<TodoStatus, string> = {
-  [TodoStatus.PENDING]: "Pendiente",
-  [TodoStatus.IN_PROGRESS]: "En progreso",
-  [TodoStatus.COMPLETED]: "Completado"
+  [TodoStatus.PENDING]: "Pending",
+  [TodoStatus.IN_PROGRESS]: "In Progress",
+  [TodoStatus.COMPLETED]: "Completed"
 };
 
 export default StatusText;

@@ -4,7 +4,6 @@ import { useEffect, useMemo } from "react";
 
 import TodoCard from "@/components/todo/TodoCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import { Todo } from "@/contexts/todo/domain/entities/Todo";
 import { useAuth } from "@/hooks/useAuth";
 import { useTodo } from "@/hooks/useTodo";
 import { useModalStore } from "@/store/modalStore";
@@ -32,13 +31,13 @@ export default function TodoList() {
     fetchTodos();
   }, [user?.id, getTodos, shouldRefetch]);
 
-  const handleEdit = (todo: Todo) => {
+  const handleEdit = (todo: typeof todos[0]) => {
     selectTodo(todo);
     openModal();
   };
 
   const handleDelete = async (id: string) => {
-    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar esta tarea?");
+    const isConfirmed = window.confirm("Are you sure you want to delete this task?");
     if (!isConfirmed) return;
 
     await deleteTodo(id);
@@ -51,7 +50,7 @@ export default function TodoList() {
   if (!todos.length) {
     return (
       <div className="text-center p-4 text-gray-500 dark:text-gray-400">
-        No hay tareas pendientes
+        No pending tasks
       </div>
     );
   }

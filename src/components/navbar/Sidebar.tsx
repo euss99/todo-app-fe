@@ -69,7 +69,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
           <div className="p-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <p className="text-base font-medium text-gray-900 dark:text-white">
-              Hola, {user?.name || "Usuario"}!
+              Hello, {user?.name || "User"}!
             </p>
             <button
               onClick={toggleTheme}
@@ -81,7 +81,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <button
               onClick={handleLogout}
               className="w-full flex items-center justify-center p-2 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors duration-200"
-              aria-label="Cerrar sesión"
+              aria-label="Sign out"
             >
               <ArrowRightStartOnRectangleIcon className="w-6 h-6" />
             </button>

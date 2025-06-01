@@ -22,7 +22,7 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      showErrorToast("Las contraseñas no coinciden");
+      showErrorToast("Passwords do not match");
       return;
     }
 
@@ -39,10 +39,10 @@ export default function RegisterForm() {
           autoComplete="name"
           id="name"
           isFirst
-          label="Nombre completo"
+          label="Name"
           name="name"
           onChange={(e) => setName(e.target.value)}
-          placeholder="Nombre completo"
+          placeholder="Name"
           required
           type="text"
           value={name}
@@ -50,10 +50,10 @@ export default function RegisterForm() {
         <FormInput
           autoComplete="email"
           id="email-address"
-          label="Correo electrónico"
+          label="Email"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Correo electrónico"
+          placeholder="Email"
           required
           type="email"
           value={email}
@@ -61,23 +61,23 @@ export default function RegisterForm() {
         <FormInput
           autoComplete="new-password"
           id="password"
-          label="Contraseña"
+          label="Password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
+          placeholder="Password"
           required
           type="password"
           value={password}
         />
         <FormInput
           autoComplete="new-password"
-          error={password !== confirmPassword ? "Las contraseñas no coinciden" : undefined}
+          error={password !== confirmPassword ? "Passwords do not match" : undefined}
           id="confirm-password"
           isLast
-          label="Confirmar contraseña"
+          label="Confirm Password"
           name="confirm-password"
           onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirmar contraseña"
+          placeholder="Confirm Password"
           required
           type="password"
           value={confirmPassword}
@@ -85,16 +85,15 @@ export default function RegisterForm() {
       </div>
 
       <Button
-        label="Registrarse"
-        type="submit"
+        label="Sign Up"
         isLoading={isLoading}
+        type="submit"
         fullWidth
-        className="mt-10"
       />
 
       <div className="flex items-center justify-center">
         <a href={RouteName.LOGIN} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">
-          ¿Ya tienes una cuenta? Inicia sesión
+          Already have an account? Sign in
         </a>
       </div>
     </form>
