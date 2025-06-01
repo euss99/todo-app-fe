@@ -4,6 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
 
 import TodoInput from "@/components/todo/TodoInput";
+import Button from "@/components/ui/Button";
 
 interface TodoModalProps {
   isOpen: boolean
@@ -91,19 +92,16 @@ export default function TodoModal({
                 />
 
                 <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-                  <button
+                  <Button
+                    label="Cancelar"
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-white dark:bg-gray-700 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 sm:w-auto"
+                    variant="secondary"
                     onClick={onClose}
-                  >
-                    Cancelar
-                  </button>
-                  <button
+                  />
+                  <Button
+                    label={mode === "add" ? "Agregar" : "Guardar cambios"}
                     type="submit"
-                    className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:w-auto"
-                  >
-                    {mode === "add" ? "Agregar" : "Guardar cambios"}
-                  </button>
+                  />
                 </div>
               </form>
             </div>

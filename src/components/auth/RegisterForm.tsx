@@ -4,14 +4,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import FormInput from "@/components/auth/FormInput";
-import { useError } from "@/hooks/useError";
+import Button from "@/components/ui/Button";
+import { useToast } from "@/hooks/useToast";
 import { useUser } from "@/hooks/useUser";
 import RouteName from "@/utils/enums/RouteName.enum";
 
 export default function RegisterForm() {
   const router = useRouter();
   const { createUser, isLoading } = useUser();
-  const { showError } = useError();
+  const { showErrorToast } = useToast();
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      showError("Las contraseñas no coinciden");
+      showErrorToast("Las contraseñas no coinciden");
       return;
     }
 
@@ -83,13 +84,13 @@ export default function RegisterForm() {
         />
       </div>
 
-      <button
+      <Button
+        label="Registrarse"
         type="submit"
-        disabled={isLoading}
-        className="group relative mt-10 w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isLoading ? "Registrando..." : "Registrarse"}
-      </button>
+        isLoading={isLoading}
+        fullWidth
+        className="mt-10"
+      />
 
       <div className="flex items-center justify-center">
         <a href={RouteName.LOGIN} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">

@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import FormInput from "@/components/auth/FormInput";
+import Button from "@/components/ui/Button";
 import { useAuth } from "@/hooks/useAuth";
 import RouteName from "@/utils/enums/RouteName.enum";
 
@@ -51,13 +52,12 @@ export default function LoginForm() {
         />
       </div>
 
-      <button
+      <Button
+        label="Iniciar sesión"
+        isLoading={isLoading}
         type="submit"
-        disabled={isLoading}
-        className="group relative w-full mt-10 flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
-      </button>
+        fullWidth
+      />
 
       <div className="flex items-center justify-center">
         <a href={RouteName.REGISTER} className="font-medium text-base text-blue-600 hover:text-blue-500 dark:text-blue-400">

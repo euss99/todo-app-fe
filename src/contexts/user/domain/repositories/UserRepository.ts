@@ -1,11 +1,6 @@
 import { User } from "@/contexts/user/domain/entities/User";
-
-export interface CreateUserInput {
-  name: string;
-  email: string;
-  password: string;
-}
+import { UserInput } from "@/contexts/user/domain/entities/UserInput";
 
 export interface UserRepository {
-  createUser(input: CreateUserInput): Promise<User>;
+  createUser(input: UserInput): Promise<User>;
 }

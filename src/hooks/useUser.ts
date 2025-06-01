@@ -1,22 +1,24 @@
 import { useState } from "react";
 
 import { UserUseCases } from "@/contexts/user/application/useCases/userUseCases";
-import { CreateUserInput } from "@/contexts/user/domain/repositories/UserRepository";
-import { GraphQLUserRepository } from "@/contexts/user/infrastructure/repositories/GraphQLUserRepository";
-import { useError } from "@/hooks/useError";
+import { UserInput } from "@/contexts/user/domain/entities/UserInput";
+import { GraphQLUserRepository } from "@/contexts/user/infrastructure/graphql/GraphQLUserRepository";
+import { useToast } from "@/hooks/useToast";
 
 export function useUser() {
   const [isLoading, setIsLoading] = useState(false);
-  const { showError } = useError();
+  const { showErrorToast, showSuccessToast } = useToast();
   const userRepository = new GraphQLUserRepository();
   const userUseCases = new UserUseCases(userRepository);
 
-  const createUser = async (input: CreateUserInput) => {
+  const createUser = async (input: UserInput) => {
     setIsLoading(true);
     try {
-      return await userUseCases.createUser(input);
+      const user = await userUseCases.createUser(input);
+      showSuccessToast("Usuario creado con exito");
+      return user;
     } catch (error) {
-      showError(error);
+      showErrorToast(error);
       throw error;
     } finally {
       setIsLoading(false);
