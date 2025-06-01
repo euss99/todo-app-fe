@@ -8,6 +8,7 @@ const config: NextConfig = {
   images: {
     unoptimized: true,
   },
+  mizbasePath: process.env.NODE_ENV === 'production' ? '/todo-app-fe' : '',
 };
 
 export default config;
