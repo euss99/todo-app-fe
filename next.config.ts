@@ -9,6 +9,7 @@ const config: NextConfig = {
     unoptimized: true,
   },
   basePath: process.env.NODE_ENV === 'production' ? '/todo-app-fe' : '',
+  trailingSlash: true,
 };
 
 export default config;
