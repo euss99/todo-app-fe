@@ -8,7 +8,6 @@ const config: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/todo-app-fe' : '',
   trailingSlash: true,
 };
 
