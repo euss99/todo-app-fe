@@ -52,6 +52,13 @@ export default function TodoList() {
     const isConfirmed = window.confirm("Are you sure you want to delete this task?");
     if (!isConfirmed) return;
 
+    const isLastTodoOnPage = paginatedTodos.length === 1;
+    const isNotFirstPage = currentPage > 1;
+
+    if (isLastTodoOnPage && isNotFirstPage) {
+      setCurrentPage(currentPage - 1);
+    }
+
     await deleteTodo(id);
   };
 
@@ -96,4 +103,4 @@ export default function TodoList() {
       />
     </div>
   );
-} 
+}
