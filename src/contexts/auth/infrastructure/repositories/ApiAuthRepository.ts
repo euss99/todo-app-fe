@@ -19,7 +19,6 @@ export class ApiAuthRepository implements AuthRepository {
 
       return { token, user };
     } catch (error) {
-      console.error("Login error:", error);
       throw error;
     }
   }
@@ -37,8 +36,7 @@ export class ApiAuthRepository implements AuthRepository {
 
       return response.data;
     } catch (error) {
-      console.error("Error getting current user:", error);
-      return null;
+      throw error;
     }
   }
 

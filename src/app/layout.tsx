@@ -1,7 +1,9 @@
 import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { ToastContainer } from "react-toastify";
 
 import { defaultMetadata } from "@/app/metadata";
 import Guard from "@/components/guard/Guard";
@@ -23,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <Guard>{children}</Guard>
+        <ToastContainer />
       </body>
     </html>
   );

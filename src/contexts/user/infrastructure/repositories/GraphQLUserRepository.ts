@@ -1,6 +1,5 @@
 import { ApolloClient, gql, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
 
-import { extractGraphQLErrorMessage } from "@/utils/errors/GraphQLError";
 import { User } from "@/contexts/user/domain/entities/User";
 import { CreateUserInput, UserRepository } from "@/contexts/user/domain/repositories/UserRepository";
 
@@ -35,7 +34,7 @@ export class GraphQLUserRepository implements UserRepository {
 
       return data.createUser;
     } catch (error) {
-      throw new Error(extractGraphQLErrorMessage(error));
+      throw error;
     }
   }
 }

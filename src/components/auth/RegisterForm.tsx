@@ -4,12 +4,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import FormInput from "@/components/auth/FormInput";
+import { useError } from "@/hooks/useError";
 import { useUser } from "@/hooks/useUser";
 import RouteName from "@/utils/enums/RouteName.enum";
 
 export default function RegisterForm() {
   const router = useRouter();
-  const { createUser, isLoading, error } = useUser();
+  const { createUser, isLoading } = useUser();
+  const { showError } = useError();
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -19,29 +21,18 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.error("Las contraseñas no coinciden");
+      showError("Las contraseñas no coinciden");
       return;
     }
 
-    try {
-      await createUser({ name, email, password });
+    const user = await createUser({ name, email, password });
+    if (user) {
       router.push(RouteName.LOGIN);
-    } catch (error) {
-      console.log(error);
     }
   };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-      {error && (
-        <div className="rounded-md bg-red-50 p-4">
-          <div className="flex">
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800">{error}</h3>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="rounded-md shadow-sm -space-y-px">
         <FormInput
           autoComplete="name"
@@ -95,7 +86,7 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="group relative mt-10 w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? "Registrando..." : "Registrarse"}
       </button>

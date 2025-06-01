@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { AuthUseCases } from "@/contexts/auth/application/useCases/authUseCases";
 import { ApiAuthRepository } from "@/contexts/auth/infrastructure/repositories/ApiAuthRepository";
+import { useError } from "@/hooks/useError";
 import { useAuthStore } from "@/store/authStore";
 import StorageKey from "@/utils/enums/StorageKey.enum";
 
@@ -10,6 +11,7 @@ const authUseCases = new AuthUseCases(authRepository);
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { showError } = useError();
   const { user, token, isAuthenticated, setToken, setUser, clearAuth } = useAuthStore();
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export const useAuth = () => {
       setUser(response.user);
       return response;
     } catch (error) {
-      console.error("Login error:", error);
+      showError(error);
       throw error;
     }
   };
@@ -54,7 +56,7 @@ export const useAuth = () => {
       await authUseCases.logout();
       clearAuth();
     } catch (error) {
-      console.error("Logout error:", error);
+      showError(error);
       throw error;
     }
   };
