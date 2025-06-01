@@ -15,6 +15,7 @@ interface TodoStore {
   clearSelectedTodo: () => void;
   setLastFetched: (timestamp: number) => void;
   shouldRefetch: () => boolean;
+  clearTodos: () => void;
 }
 
 const FIVE_MINUTES = 5 * 60 * 1000;
@@ -41,7 +42,8 @@ export const useTodoStore = create<TodoStore>()(
       shouldRefetch: () => {
         const { lastFetched } = get();
         return !lastFetched || Date.now() - lastFetched > FIVE_MINUTES;
-      }
+      },
+      clearTodos: () => set({ todos: [], selectedTodo: null, lastFetched: null })
     }),
     {
       name: "todo-store"

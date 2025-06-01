@@ -1,22 +1,26 @@
 import { useState } from "react";
 
-import { AuthUseCases } from "@/contexts/auth/application/useCases/authUseCases";
+import LoginUseCase from "@/contexts/auth/application/useCases/LoginUseCase";
+import LogoutUseCase from "@/contexts/auth/application/useCases/LogoutUseCase";
 import { ApiAuthRepository } from "@/contexts/auth/infrastructure/repositories/ApiAuthRepository";
 import { useToast } from "@/hooks/useToast";
 import { useAuthStore } from "@/store/authStore";
+import { useTodoStore } from "@/store/todoStore";
 
 const authRepository = new ApiAuthRepository();
-const authUseCases = new AuthUseCases(authRepository);
+const loginUseCase = new LoginUseCase(authRepository);
+const logoutUseCase = new LogoutUseCase(authRepository);
 
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { showErrorToast } = useToast();
   const { user, token, isAuthenticated, setToken, setUser, clearAuth } = useAuthStore();
+  const { clearTodos } = useTodoStore();
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      const response = await authUseCases.login(email, password);
+      const response = await loginUseCase.execute(email, password);
       setToken(response.token);
       setUser(response.user);
       return response;
@@ -30,8 +34,9 @@ export const useAuth = () => {
 
   const logout = async () => {
     try {
-      await authUseCases.logout();
+      await logoutUseCase.execute();
       clearAuth();
+      clearTodos();
     } catch (error) {
       showErrorToast(error);
       throw error;

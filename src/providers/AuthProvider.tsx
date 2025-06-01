@@ -4,15 +4,14 @@ import { useRouter } from "next/navigation";
 import { type ReactNode, useCallback,useEffect, useState } from "react";
 
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import { AuthUseCases } from "@/contexts/auth/application/useCases/authUseCases";
+import GetCurrentUserUseCase from "@/contexts/auth/application/useCases/GetCurrentUserUseCase";
 import { ApiAuthRepository } from "@/contexts/auth/infrastructure/repositories/ApiAuthRepository";
 import { useAuthStore } from "@/store/authStore";
 import RouteName from "@/utils/enums/RouteName.enum";
 import StorageKey from "@/utils/enums/StorageKey.enum";
 
 const authRepository = new ApiAuthRepository();
-const authUseCases = new AuthUseCases(authRepository);
-
+const getCurrentUserUseCase = new GetCurrentUserUseCase(authRepository);
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -33,7 +32,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       try {
         const storedToken = localStorage.getItem(StorageKey.AUTH_TOKEN);
         if (storedToken) {
-          const currentUser = await authUseCases.getCurrentUser();
+          const currentUser = await getCurrentUserUseCase.execute();
           if (currentUser) {
             setToken(storedToken);
             setUser(currentUser);
