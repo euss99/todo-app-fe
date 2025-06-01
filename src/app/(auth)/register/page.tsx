@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import RegisterForm from "@/components/auth/RegisterForm";
+import RegisterForm from "@/components/auth/form/RegisterForm";
 
 export const metadata: Metadata = {
   title: "Registro - Todo App",

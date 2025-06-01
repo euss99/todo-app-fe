@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 
-import FormInput from "@/components/auth/FormInput";
+import FormInput from "@/components/auth/form/FormInput";
 import Button from "@/components/ui/Button";
 import { useToast } from "@/hooks/useToast";
 import { useUser } from "@/hooks/useUser";

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import LoginForm from "@/components/auth/LoginForm";
+import LoginForm from "@/components/auth/form/LoginForm";
 
 export const metadata: Metadata = {
   title: "Login - Todo App",

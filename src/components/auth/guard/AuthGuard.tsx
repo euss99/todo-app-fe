@@ -15,7 +15,7 @@ interface AuthGuardProps {
 const PUBLIC_ROUTES = [RouteName.LOGIN, RouteName.REGISTER];
 const PROTECTED_ROUTES = [RouteName.HOME];
 
-export default function Guard({ children }: AuthGuardProps) {
+export default function AuthGuard({ children }: AuthGuardProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { token } = useAuth();

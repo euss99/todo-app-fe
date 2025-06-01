@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 
 import { defaultMetadata } from "@/app/metadata";
-import Guard from "@/components/guard/Guard";
+import AuthGuard from "@/components/auth/guard/AuthGuard";
 import AuthProvider from "@/providers/AuthProvider";
 
 const geistSans = Geist({
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <AuthProvider>
-          <Guard>{children}</Guard>
+          <AuthGuard>{children}</AuthGuard>
           <ToastContainer
             toastClassName={toastStyles}
             autoClose={2000}
