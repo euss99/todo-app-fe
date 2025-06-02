@@ -9,7 +9,7 @@ interface MobileHeaderProps {
 export default function MobileHeader({ onOpen }: MobileHeaderProps) {
   return (
     <div className="lg:hidden">
-      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-gray-700">
         <h1 className="text-xl font-bold text-gray-900 dark:text-white">Todo App</h1>
         <button
           onClick={onOpen}
