@@ -1,23 +1,31 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { type FormEvent, useState } from "react";
+import { type FormEvent } from "react";
 
 import FormInput from "@/components/auth/form/FormInput";
 import Button from "@/components/ui/Button";
 import { useAuth } from "@/hooks/useAuth";
+import { useForm } from "@/hooks/useForm";
 import RouteName from "@/utils/enums/RouteName.enum";
+
+interface LoginFormInput {
+  email: string;
+  password: string;
+}
 
 export default function LoginForm() {
   const router = useRouter();
   const { login, isLoading } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { form, handleChange } = useForm<LoginFormInput>({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const auth = await login(email, password);
+    const auth = await login(form.email, form.password);
     if (auth) {
       router.push(RouteName.HOME);
     }
@@ -32,11 +40,11 @@ export default function LoginForm() {
           isFirst
           label="Email"
           name="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange}
           placeholder="Email"
           required
           type="email"
-          value={email}
+          value={form.email}
         />
         <FormInput
           autoComplete="current-password"
@@ -44,11 +52,11 @@ export default function LoginForm() {
           isLast
           label="Password"
           name="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
           placeholder="Password"
           required
           type="password"
-          value={password}
+          value={form.password}
         />
       </div>
 

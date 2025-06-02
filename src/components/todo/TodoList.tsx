@@ -14,7 +14,7 @@ const ITEMS_PER_PAGE = 3;
 
 export default function TodoList() {
   const { user } = useAuth();
-  const { todos, getTodos, isLoading, shouldRefetch, selectTodo, deleteTodo } = useTodo();
+  const { todos, isLoading, getTodos, shouldRefetch, selectTodo, deleteTodo } = useTodo();
   const { openModal } = useModalStore();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -41,7 +41,7 @@ export default function TodoList() {
     };
 
     fetchTodos();
-  }, [user?.id, getTodos, shouldRefetch]);
+  }, [getTodos, shouldRefetch, user]);
 
   const handleEdit = (todo: typeof todos[0]) => {
     selectTodo(todo);

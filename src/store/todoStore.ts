@@ -43,7 +43,11 @@ export const useTodoStore = create<TodoStore>()(
         const { lastFetched } = get();
         return !lastFetched || Date.now() - lastFetched > FIVE_MINUTES;
       },
-      clearTodos: () => set({ todos: [], selectedTodo: null, lastFetched: null })
+      clearTodos: () => set({
+        todos: [],
+        selectedTodo: null,
+        lastFetched: null,
+      })
     }),
     {
       name: "todo-store"

@@ -6,7 +6,7 @@ import { type ReactNode, useCallback,useEffect, useState } from "react";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import GetCurrentUserUseCase from "@/contexts/auth/application/useCases/GetCurrentUserUseCase";
 import { ApiAuthRepository } from "@/contexts/auth/infrastructure/repositories/ApiAuthRepository";
-import { useAuthStore } from "@/store/authStore";
+import { useAuth } from "@/hooks/useAuth";
 import RouteName from "@/utils/enums/RouteName.enum";
 import StorageKey from "@/utils/enums/StorageKey.enum";
 
@@ -18,7 +18,7 @@ interface AuthProviderProps {
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const { setToken, setUser, clearAuth } = useAuthStore();
+  const { setToken, setUser, clearAuth } = useAuth();
   const router = useRouter();
 
   const forceLogOut = useCallback(() => {

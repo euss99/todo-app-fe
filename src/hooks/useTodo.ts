@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { CreateTodoUseCase } from "@/contexts/todo/application/useCases/CreateTodoUseCase";
 import { DeleteTodoUseCase } from "@/contexts/todo/application/useCases/DeleteTodoUseCase";
@@ -9,13 +9,6 @@ import { CreateTodoInput, UpdateTodoInput, UpdateTodoStatusInput } from "@/conte
 import { GraphQLTodoRepository } from "@/contexts/todo/infrastructure/graphql/GraphQLTodoRepository";
 import { useToast } from "@/hooks/useToast";
 import { useTodoStore } from "@/store/todoStore";
-
-const todoRepository = new GraphQLTodoRepository();
-const getTodosUseCase = new GetTodosUseCase(todoRepository);
-const createTodoUseCase = new CreateTodoUseCase(todoRepository);
-const updateTodoUseCase = new UpdateTodoUseCase(todoRepository);
-const updateTodoStatusUseCase = new UpdateTodoStatusUseCase(todoRepository);
-const deleteTodoUseCase = new DeleteTodoUseCase(todoRepository);
 
 export function useTodo() {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,8 +26,17 @@ export function useTodo() {
     clearSelectedTodo
   } = useTodoStore();
 
-  const getTodos = async (userId: string) => {
-    if (!shouldRefetch()) return;
+  const todoRepository = useMemo(() => new GraphQLTodoRepository(), []);
+  const getTodosUseCase = useMemo(() => new GetTodosUseCase(todoRepository), [todoRepository]);
+  const createTodoUseCase = useMemo(() => new CreateTodoUseCase(todoRepository), [todoRepository]);
+  const updateTodoUseCase = useMemo(() => new UpdateTodoUseCase(todoRepository), [todoRepository]);
+  const updateTodoStatusUseCase = useMemo(() => new UpdateTodoStatusUseCase(todoRepository), [todoRepository]);
+  const deleteTodoUseCase = useMemo(() => new DeleteTodoUseCase(todoRepository), [todoRepository]);
+
+    const memoizedShouldRefetch = useCallback(() => shouldRefetch(), [shouldRefetch]);
+
+  const getTodos = useCallback(async (userId: string) => {
+    if (!memoizedShouldRefetch()) return;
 
     try {
       setIsLoading(true);
@@ -44,12 +46,11 @@ export function useTodo() {
       return todos;
     } catch (error) {
       showErrorToast("Error al cargar las tareas");
-      console.error("Error getting todos:", error);
       throw error;
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [memoizedShouldRefetch, getTodosUseCase, setTodos, setLastFetched, showErrorToast]);
 
   const createTodo = async (input: CreateTodoInput) => {
     try {
@@ -119,7 +120,7 @@ export function useTodo() {
     todos,
     selectedTodo,
     isLoading,
-    shouldRefetch,
+    shouldRefetch: memoizedShouldRefetch,
     // Actions
     getTodos,
     createTodo,
